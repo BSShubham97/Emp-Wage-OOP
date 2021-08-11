@@ -9,12 +9,12 @@ import java.util.Scanner;
  * @version 1.0
  * @since 10/08/2021
  */
-public class EmpWage<number> {
+public class EmpWage {
     int WAGE_PER_HR = 20 ;
     /**
-     *  function checkWorkCase gives out the employee wages total for a number of days based on hours
+     *  function checkWorkCase gives out the employee wages total for a number of days below 100 hours on hours
      */
-    public void outDaysWage(int number) {
+    public void outHourWageLim(int hours ,int number) {
         int i;
         int emp_check;
         int emp_work_time;
@@ -22,22 +22,25 @@ public class EmpWage<number> {
 
         for (i = 1; i <= number; i++) //Repeating the loop for 20 days
         {
-            System.out.println("DAY:" + i);
-            emp_check = (int) (Math.random() * 10) % 2;
-            int attend = emp_check;
+            if (total_work_time <= hours) //to keep the working hours under limit
+            {
+                System.out.println("DAY:" + i);
+                emp_check = (int) (Math.random() * 10) % 2;
+                int attend = emp_check;
 
-            switch (attend) {
-                case 1:
-                    emp_work_time = (int) (Math.random() * 10) % 9;
-                    total_work_time = total_work_time + emp_work_time;
-                    System.out.println("This days work time: " + emp_work_time);
-                    break;
-                case 0:
-                    emp_work_time = 0;
-                    total_work_time = total_work_time + emp_work_time;
-                    System.out.println("This days work time: " + emp_work_time);
-                    break;
+                switch (attend) {
+                    case 1:
+                        emp_work_time = (int) (Math.random() * 10) % 9;
+                        total_work_time = total_work_time + emp_work_time;
+                        System.out.println("This days work time: " + emp_work_time);
+                        break;
+                    case 0:
+                        emp_work_time = 0;
+                        total_work_time = total_work_time + emp_work_time;
+                        System.out.println("This days work time: " + emp_work_time);
+                        break;
 
+                }
             }
         }
         System.out.println("Total working hours: "+total_work_time+"hrs");
@@ -56,9 +59,11 @@ public class EmpWage<number> {
  */
         EmpWage emp = new EmpWage();
         Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter the limit of working hours of a month:");
+        int hour=scanner.nextInt();
         System.out.println("Enter the days of a month:");
         int number=scanner.nextInt();
-        emp.outDaysWage(number);
+        emp.outHourWageLim(hour,number);
 
 
     }
