@@ -1,52 +1,64 @@
 package com.bridgelabz;
 
+import java.util.Scanner;
+
 /**
- * Program using OOPS concept to check employee wage based on hours
+ * Program using OOPS concept to check employee wage based on hours for a number of days
  *
  * @author Shubham
  * @version 1.0
  * @since 10/08/2021
  */
-public class EmpWage {
+public class EmpWage<number> {
     int WAGE_PER_HR = 20 ;
     /**
-     *  function checkWorkCase gives out if the employee is part timer or full timer using  switch case
+     *  function checkWorkCase gives out the employee wages total for a number of days based on hours
      */
-    public void checkWorkCase() {
-        int emp_hrs=0 ;
+    public void outDaysWage(int number) {
+        int i;
         int emp_check;
-        emp_check = (int) (Math.random() * 10) % 3;
+        int emp_work_time;
+        int total_work_time = 0;
 
-        int time = emp_check;
-        switch (time) {
-            case 2:
-                System.out.println("Employee is a full time worker");
-                emp_hrs = 8;
-                break;
-            case 1:
-                System.out.println("Employee is a part time worker");
-                emp_hrs = 4;
-                break;
-            case 0:
-                System.out.println("Employee data unavailable ");
-                emp_hrs = 0;
-                break;
+        for (i = 1; i <= number; i++) //Repeating the loop for 20 days
+        {
+            System.out.println("DAY:" + i);
+            emp_check = (int) (Math.random() * 10) % 2;
+            int attend = emp_check;
+
+            switch (attend) {
+                case 1:
+                    emp_work_time = (int) (Math.random() * 10) % 9;
+                    total_work_time = total_work_time + emp_work_time;
+                    System.out.println("This days work time: " + emp_work_time);
+                    break;
+                case 0:
+                    emp_work_time = 0;
+                    total_work_time = total_work_time + emp_work_time;
+                    System.out.println("This days work time: " + emp_work_time);
+                    break;
+
+            }
         }
+        System.out.println("Total working hours: "+total_work_time+"hrs");
+        int total_pay = total_work_time * 20;
 
+
+        System.out.println("Total wage of the Employee: " + total_pay);
     }
 
-
-
     public static void main(String[] args) {
-        System.out.println("Program to give out if the employee is a part timer or full timer ");
+        System.out.println("Program to give out employee wages for a month ");
         System.out.println("__________________________________________________________________");
 /**
  * Using methods
  * we use the methods created in class EmpWageCheck by making its object
  */
         EmpWage emp = new EmpWage();
-
-        emp.checkWorkCase();
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter the days of a month:");
+        int number=scanner.nextInt();
+        emp.outDaysWage(number);
 
 
     }
