@@ -15,7 +15,17 @@ public class EmpWage {
     public int randhrs() {
         int emp_hrs;
         emp_hrs = (int) Math.floor((Math.random() * 10 % 8)+1);
-        return emp_hrs;
+        if(emp_hrs<=4)
+        {
+            System.out.println("Employee Hours:"+emp_hrs);
+            System.out.println("Employee is a Part Time Worker");
+            return emp_hrs;
+        }
+        else{
+            System.out.println("Employee Hours:"+emp_hrs);
+            System.out.println("Employee is a Full Timer Worker");
+            return emp_hrs;
+        }
     }
 
     /**
@@ -23,6 +33,8 @@ public class EmpWage {
      *
      *  totpay() gives out total pay
      */
+
+
     public void totpay(int emp_hrs) {
         int totalpay= WAGE_PER_HR * emp_hrs;
         System.out.println("Employees total pay for the days is :"+totalpay);
@@ -38,7 +50,6 @@ public class EmpWage {
         EmpWage emp = new EmpWage();
         int emp_hrs;
         emp_hrs= emp.randhrs();
-        System.out.println("Total Hours:"+emp_hrs);
         emp.totpay(emp_hrs);
 
     }
